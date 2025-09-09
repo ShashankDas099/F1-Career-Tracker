@@ -2,7 +2,7 @@ import mysql.connector
 from mysql.connector import errorcode
 
 # --- F1 2020 DATA ---
-# NEW: Added Country Code, Birthplace, Championships, Podiums
+# (Data lists remain the same)
 teams_data = [
     (1, 'Mercedes-AMG Petronas F1 Team', 'Brackley, United Kingdom'), (2, 'Scuderia Ferrari', 'Maranello, Italy'),
     (3, 'Red Bull Racing Honda', 'Milton Keynes, United Kingdom'), (4, 'McLaren F1 Team', 'Woking, United Kingdom'),
@@ -45,11 +45,19 @@ races_data = [
 
 # --- MAIN SCRIPT ---
 def setup_database():
-    config = {'user': 'root', 'password': 'root', 'host': '127.0.0.1', 'database': 'f1_career_db'}
+    # --- IMPORTANT: Replace with your credentials ONLY when running locally ---
+    # Do NOT commit this file to GitHub with real passwords in it.
+    config = {
+        'user': 'YOUR_DATABASE_USER',
+        'password': 'YOUR_DATABASE_PASSWORD',
+        'host': 'YOUR_DATABASE_HOST',
+        'database': 'YOUR_DATABASE_NAME'
+    }
+    
     try:
         conn = mysql.connector.connect(**config)
         cursor = conn.cursor()
-        print("Successfully connected to MySQL database.")
+        print("Successfully connected to the database.")
 
         # --- Drop existing tables to start fresh ---
         cursor.execute("SET FOREIGN_KEY_CHECKS=0;")
@@ -95,7 +103,7 @@ def setup_database():
                 FOREIGN KEY (driver_id) REFERENCES drivers(id) ON DELETE CASCADE
             );
         """)
-        print("Successfully recreated all tables with new structure.")
+        print("Successfully recreated all tables in the database.")
 
         # --- Populate Tables ---
         cursor.executemany("INSERT INTO teams (id, name, base) VALUES (%s, %s, %s)", teams_data)
@@ -109,7 +117,7 @@ def setup_database():
         cursor.executemany("INSERT INTO constructor_standings (team_id) VALUES (%s)", [(id,) for id in team_ids])
         
         conn.commit()
-        print("Database setup complete. All tables populated and initialized.")
+        print("Database setup complete. All tables have been populated and initialized.")
 
     except mysql.connector.Error as err:
         print(f"DATABASE ERROR: {err}")
