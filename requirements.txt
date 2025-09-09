@@ -11,22 +11,3 @@ mysql-connector-python
 gunicorn
 
 
-**Action 2: Push the Final Fix to GitHub**
-
-Now that you have the correct file saved locally, you just need to upload this one last fix to your GitHub repository. This will trigger a new deployment on Render, which will finally succeed.
-
-Please run these three commands in your terminal, one by one:
-
-1.  **Add the corrected file:**
-    ```bash
-    git add requirements.txt
-    ```
-
-2.  **Commit the fix:**
-    ```bash
-    git commit -m "Final fix for requirements.txt format"
-    ```
-
-3.  **Push the fix to GitHub:**
-    ```bash
-    git push
