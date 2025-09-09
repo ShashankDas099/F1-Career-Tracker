@@ -1,15 +1,28 @@
------------------------------------------------------------------
-Dependencies for the F1 2020 Two-Player Career Tracker
------------------------------------------------------------------
-To install all of these packages, run the following command in your terminal:
-pip install -r requirements.txt
------------------------------------------------------------------
-The core web framework used to build the application.
+--- Core Web Framework ---
 Flask
 
-The official Python driver for connecting the application to a MySQL database.
+--- Database Connector ---
+Allows the Flask application to communicate with a MySQL database.
 mysql-connector-python
 
-A production-ready WSGI HTTP server for serving the Flask application.
-This is used for deployment instead of Flask's built-in development server.
+--- Production Web Server ---
+A professional-grade WSGI server used to run the Flask app in production.
 gunicorn
+
+
+**Action 2: Push the Fix to GitHub**
+Now that you have the corrected file on your local machine, we need to upload it to your GitHub repository so that Render can see the fix.
+
+1.  Open your terminal in your `F1_Career_Project` folder.
+2.  Run the following commands one by one:
+    * **Add the changed file:**
+      ```bash
+      git add requirements.txt
+      ```
+    * **Commit the fix with a message:**
+      ```bash
+      git commit -m "Fix requirements.txt for deployment"
+      ```
+    * **Push the change to GitHub:**
+      ```bash
+      git push
