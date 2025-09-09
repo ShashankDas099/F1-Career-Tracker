@@ -12,7 +12,8 @@ gunicorn
 
 
 **Action 2: Push the Final Fix to GitHub**
-Now that you have the correct file, you just need to upload this one last fix to your GitHub repository. This will trigger a new deployment on Render, which will finally succeed.
+
+Now that you have the correct file saved locally, you just need to upload this one last fix to your GitHub repository. This will trigger a new deployment on Render, which will finally succeed.
 
 Please run these three commands in your terminal, one by one:
 
