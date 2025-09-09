@@ -1,0 +1,164 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ driver.name or 'Driver Details' }}{% endblock %}
+
+{% block content %}
+<div class="card driver-detail-card">
+    {% if driver %}
+        <!-- Main Driver Header -->
+        <div class="driver-header">
+            <div class="driver-info">
+                <h1 class="driver-name">
+                    {% if driver.country_code %}
+                        <img src="https://flagcdn.com/w40/{{ driver.country_code }}.png" alt="{{ driver.nationality }} flag" class="driver-flag">
+                    {% endif %}
+                    {{ driver.name }}
+                </h1>
+                <p class="driver-team">{{ driver.team_name or 'No Team' }}</p>
+            </div>
+            <div class="driver-number">#{{ driver.number or 'N/A' }}</div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="driver-stats-grid">
+            <!-- Biographical Information -->
+            <div class="stat-card">
+                <h3>Biography</h3>
+                <div class="stat-item">
+                    <span class="stat-label">Nationality</span>
+                    <span class="stat-value">{{ driver.nationality or 'N/A' }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Born</span>
+                    <span class="stat-value">{{ driver.birthplace or 'N/A' }}</span>
+                </div>
+            </div>
+            <!-- Career Accomplishments -->
+            <div class="stat-card">
+                <h3>Career Accomplishments</h3>
+                <div class="stat-item">
+                    <span class="stat-label">World Championships</span>
+                    <span class="stat-value">{{ driver.championships if driver.championships is not none else 'N/A' }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Podiums</span>
+                    <span class="stat-value">{{ driver.podiums if driver.podiums is not none else 'N/A' }}</span>
+                </div>
+            </div>
+            <!-- Current Career Standings -->
+            <div class="stat-card">
+                <h3>Current Career Stats</h3>
+                <div class="stat-item">
+                    <span class="stat-label">Championship Points</span>
+                    <span class="stat-value">{{ standings.points if standings else 0 }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Wins</span>
+                    <span class="stat-value">{{ standings.wins if standings else 0 }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW: Performance Chart Section -->
+        <div class="race-results-section">
+            <h2>Career Performance</h2>
+            {% if results %}
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            {% else %}
+                <p>No race results have been recorded to generate a performance chart.</p>
+            {% endif %}
+        </div>
+
+        <!-- Race by Race Results Table -->
+        <div class="race-results-section">
+            <h2>Career Race Results</h2>
+            {% if results %}
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Race Track</th>
+                            <th>Finishing Position</th>
+                            <th>Points Scored</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                        <tr>
+                            <td>{{ result.track_name }}</td>
+                            <td>
+                                P{{ result.position }}
+                                {% if result.fastest_lap %}
+                                    <span class="fastest-lap-tag" title="Fastest Lap">FL</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ result.points_scored }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No race results have been recorded for this driver in the current career.</p>
+            {% endif %}
+        </div>
+
+    {% else %}
+        <h1>Driver Not Found</h1>
+        <p>Sorry, the driver you are looking for does not exist in the database.</p>
+    {% endif %}
+</div>
+
+<!-- JavaScript for the Chart -->
+<script>
+    // This script will only run if there is data to display
+    {% if chart_labels and chart_data %}
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        const performanceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ chart_labels | tojson }},
+                datasets: [{
+                    label: 'Finishing Position',
+                    data: {{ chart_data | tojson }},
+                    borderColor: '#e10600', // F1 Red
+                    backgroundColor: 'rgba(225, 6, 0, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.1, // Makes the line slightly curved
+                    fill: true,
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        reverse: true, // P1 is at the top, P22 at the bottom
+                        ticks: {
+                            color: '#a0a0a0' // Y-axis label color
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)' // Grid line color
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#a0a0a0' // X-axis label color
+                        },
+                        grid: {
+                            display: false // Hide vertical grid lines
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false // Hide the legend box
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    {% endif %}
+</script>
+{% endblock %}
+

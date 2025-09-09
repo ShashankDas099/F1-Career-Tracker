@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="home-header">
+    <h1>F1 2020 Career Hub</h1>
+    <p>Welcome to your two-player career mode companion. Select an option below to get started.</p>
+</div>
+
+<div class="dashboard-grid">
+    <a href="{{ url_for('setup_page') }}" class="dashboard-card">
+        <div class="card-icon">
+            <!-- Icon: Settings/Sliders -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+        </div>
+        <h2>Career Setup</h2>
+        <p>Create or reset your custom drivers and team.</p>
+    </a>
+
+    <a href="{{ url_for('drivers_page') }}" class="dashboard-card">
+        <div class="card-icon">
+            <!-- Icon: Users/Drivers -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <h2>View Drivers</h2>
+        <p>Browse the full list of drivers on the grid.</p>
+    </a>
+
+    <a href="{{ url_for('add_result_page') }}" class="dashboard-card primary-action">
+        <div class="card-icon">
+            <!-- Icon: Plus Circle/Add -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+        </div>
+        <h2>Add Race Result</h2>
+        <p>Enter the finishing order for a completed race.</p>
+    </a>
+    
+    <a href="{{ url_for('results_index_page') }}" class="dashboard-card">
+        <div class="card-icon">
+            <!-- Icon: Clipboard/List -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+        </div>
+        <h2>View Results</h2>
+        <p>Review the classification from past races.</p>
+    </a>
+
+    <a href="{{ url_for('standings_page') }}" class="dashboard-card">
+        <div class="card-icon">
+            <!-- Icon: Trophy -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M9 12H4a2 2 0 0 0-2 2v6c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-5"></path><path d="M9 12a5 5 0 0 1 6 0"></path><path d="M12 12V2"></path></svg>
+        </div>
+        <h2>Standings</h2>
+        <p>Check the driver and team championship points.</p>
+    </a>
+</div>
+{% endblock %}
+

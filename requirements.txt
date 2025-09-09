@@ -1,0 +1,15 @@
+-----------------------------------------------------------------
+Dependencies for the F1 2020 Two-Player Career Tracker
+-----------------------------------------------------------------
+To install all of these packages, run the following command in your terminal:
+pip install -r requirements.txt
+-----------------------------------------------------------------
+The core web framework used to build the application.
+Flask
+
+The official Python driver for connecting the application to a MySQL database.
+mysql-connector-python
+
+A production-ready WSGI HTTP server for serving the Flask application.
+This is used for deployment instead of Flask's built-in development server.
+gunicorn

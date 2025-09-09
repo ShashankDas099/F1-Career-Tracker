@@ -1,0 +1,304 @@
+/* ---
+Modern Dark Theme for F1 Career App
+--- */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+    --primary-color: #e10600; /* F1 Red */
+    --background-color: #121212; /* Very dark grey (almost black) */
+    --surface-color: #1e1e1e; /* Dark grey for cards and surfaces */
+    --text-color: #e0e0e0; /* Light grey for primary text */
+    --text-color-secondary: #a0a0a0; /* Dimmer grey for subtitles */
+    --border-color: #333333; /* Subtle border color */
+    --font-family: 'Titillium Web', sans-serif;
+    --danger-color: #dc3545;
+    --danger-background: rgba(220, 53, 69, 0.1);
+    --success-color: #28a745;
+    --success-background: rgba(40, 167, 69, 0.1);
+    --fastest-lap-color: #9c27b0; /* A distinct purple */
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- 2. Navigation Bar (Simplified) --- */
+.navbar {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 0.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color-secondary);
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+}
+
+/* --- 3. Homepage Dashboard --- */
+.home-header {
+    text-align: center;
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+}
+.home-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.home-header p {
+    font-size: 1.2rem;
+    color: var(--text-color-secondary);
+}
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+.dashboard-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.card-icon {
+    margin-bottom: 1rem;
+}
+.card-icon svg {
+    width: 48px;
+    height: 48px;
+    color: var(--primary-color);
+}
+.dashboard-card h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+}
+.dashboard-card p {
+    color: var(--text-color-secondary);
+    margin: 0;
+}
+.dashboard-card.primary-action {
+    background-color: var(--primary-color);
+    color: white;
+}
+.dashboard-card.primary-action .card-icon svg {
+    color: white;
+}
+.dashboard-card.primary-action p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* --- 4. General Content & Other Pages --- */
+main {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.card {
+    background-color: var(--surface-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+}
+h1, h2 {
+    color: var(--text-color);
+    margin-top: 0;
+}
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.data-table thead th {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    color: var(--text-color);
+}
+.data-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+.data-table a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* --- 5. Driver Page Specific Styles --- */
+.nationality-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.flag-icon {
+    width: 20px;
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* --- Driver Detail Page Styles --- */
+.driver-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+.driver-name {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.5rem;
+    margin: 0;
+}
+.driver-flag {
+    width: 40px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.driver-team {
+    font-size: 1.2rem;
+    color: var(--text-color-secondary);
+    margin: 0.25rem 0 0 0;
+}
+.driver-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    opacity: 0.5;
+}
+.driver-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+.stat-card {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+.stat-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+}
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.stat-label {
+    color: var(--text-color-secondary);
+}
+.stat-value {
+    font-weight: 700;
+    color: var(--text-color);
+}
+.race-results-section {
+    margin-top: 2.5rem;
+}
+.race-results-section h2 {
+    margin-bottom: 1rem;
+}
+
+/* --- Performance Chart Styles --- */
+.chart-container {
+    position: relative;
+    height: 350px;
+    width: 100%;
+    background-color: var(--background-color);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* --- (Existing styles from here down) --- */
+.form-group label { color: var(--text-color-secondary); }
+.form-group input[type="text"], .form-group input[type="number"], .form-group select { background-color: #2c2c2c; border: 1px solid #444; color: var(--text-color); width: 100%; padding: 12px; border-radius: 4px; box-sizing: border-box; font-family: inherit; font-size: 1rem; }
+.button { display: inline-block; background-color: var(--primary-color); color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; font-weight: 600; text-decoration: none; text-align: center; transition: background-color 0.2s ease; }
+.button:hover { background-color: #b70323; }
+.button-danger { background-color: #a02020; }
+.button-danger:hover { background-color: #8b1b1b; }
+.flash-container { position: fixed; top: 90px; right: 20px; z-index: 1000; }
+.flash-message { padding: 1rem; margin-bottom: 1rem; border-radius: 6px; color: white; min-width: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.flash-message.success { background-color: #28a745; }
+.flash-message.error { background-color: #dc3545; }
+.results-grid-item { background-color: var(--background-color); }
+.results-grid-item:hover { border-color: #777; }
+.standings-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+@media (min-width: 992px) { .standings-grid { grid-template-columns: 1fr 1fr; } }
+.standings-card { background-color: var(--background-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; }
+.reset-section { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+.error-box { background-color: var(--danger-background); border: 1px solid var(--danger-color); color: #f8d7da; padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px; }
+.form-group { margin-bottom: 1.5rem; }
+.results-form h2 { margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+.results-grid { display: grid; gap: 1rem; margin-top: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .results-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .results-grid { grid-template-columns: repeat(4, 1fr); } }
+.results-grid-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; transition: box-shadow 0.2s ease, border-color 0.2s ease; }
+.results-grid-item label { font-weight: 600; margin-right: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.results-grid-item input { width: 60px; text-align: center; }
+.fastest-lap-tag { background-color: var(--fastest-lap-color); color: white; font-size: 0.75rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 8px; }
+

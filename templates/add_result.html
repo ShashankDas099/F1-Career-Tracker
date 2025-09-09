@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %}Add Race Result{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Add Race Result</h1>
+    <p>Select a track and enter the finishing positions for all drivers. Ensure every position from 1 to 22 is assigned to exactly one driver.</p>
+
+    <form class="setup-form" action="#" method="POST">
+        
+        <div class="form-group">
+            <label for="race_id">Select Race Track</label>
+            <select id="race_id" name="race_id" class="form-control" required>
+                <option value="" disabled selected>-- Choose a track --</option>
+                {% for race in races %}
+                    <option value="{{ race.id }}">{{ race.track_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <hr>
+
+        <h2>Finishing Order</h2>
+        <div class="results-grid">
+            {% for driver in drivers %}
+            <div class="result-entry">
+                <label for="driver_{{ driver.id }}">{{ driver.name }}</label>
+                <!-- We use driver.id to ensure each input has a unique name -->
+                <input type="number" id="driver_{{ driver.id }}" name="position_{{ driver.id }}" 
+                       min="1" max="22" class="form-control" placeholder="P" required>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <hr>
+
+        <h2>Fastest Lap</h2>
+        <div class="form-group">
+            <label for="fastest_lap_driver_id">Driver who got the fastest lap (must finish in top 10)</label>
+            <select id="fastest_lap_driver_id" name="fastest_lap_driver_id" class="form-control" required>
+                <option value="" disabled selected>-- Choose a driver --</option>
+                {% for driver in drivers %}
+                    <option value="{{ driver.id }}">{{ driver.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <button type="submit" class="button">Submit Race Results</button>
+    </form>
+
+</div>
+{% endblock %}

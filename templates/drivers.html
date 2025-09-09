@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block title %}F1 2020 Drivers{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>F1 2020 Drivers</h1>
+    <p>The official grid for the 2020 season, including your custom career drivers.</p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Nationality</th>
+                <th>Team</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for driver in drivers %}
+            <tr>
+                <td><a href="{{ url_for('driver_detail_page', driver_id=driver.id) }}">{{ driver.name }}</a></td>
+                <td>{{ driver.number or 'N/A' }}</td>
+                <td class="nationality-cell">
+                    {% if driver.country_code %}
+                    <img src="https://flagcdn.com/w20/{{ driver.country_code }}.png" alt="{{ driver.nationality }} flag" class="flag-icon">
+                    {% endif %}
+                    <span>{{ driver.nationality }}</span>
+                </td>
+                <td>{{ driver.team_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

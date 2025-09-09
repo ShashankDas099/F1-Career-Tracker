@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block title %}Career Setup{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Career Setup</h1>
+    <p>Create your custom team and add the two player drivers to the grid.</p>
+
+    <!-- NEW: Error message display -->
+    {% if error %}
+        <div class="error-box">
+            <p><strong>Error:</strong> {{ error }}</p>
+        </div>
+    {% endif %}
+
+    <!-- Form for Creating a New Career -->
+    <form class="setup-form" action="{{ url_for('setup_page') }}" method="POST">
+        
+        <div class="form-group">
+            <label for="team_name">Custom Team Name</label>
+            <input type="text" id="team_name" name="team_name" placeholder="e.g., Apex Racing" value="{{ form_data.team_name if form_data else '' }}" required>
+        </div>
+
+        <hr>
+
+        <h2>Player 1 Details</h2>
+        <div class="form-group">
+            <label for="player1_name">Player 1 Driver Name</label>
+            <input type="text" id="player1_name" name="player1_name" placeholder="Enter name for Player 1" value="{{ form_data.player1_name if form_data else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="player1_number">Player 1 Car Number</label>
+            <input type="number" id="player1_number" name="player1_number" placeholder="e.g., 77" value="{{ form_data.player1_number if form_data else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="player1_nationality">Player 1 Nationality</label>
+            <input type="text" id="player1_nationality" name="player1_nationality" placeholder="e.g., British" value="{{ form_data.player1_nationality if form_data else '' }}" required>
+        </div>
+
+        <hr>
+
+        <h2>Player 2 Details</h2>
+        <div class="form-group">
+            <label for="player2_name">Player 2 Driver Name</label>
+            <input type="text" id="player2_name" name="player2_name" placeholder="Enter name for Player 2" value="{{ form_data.player2_name if form_data else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="player2_number">Player 2 Car Number</label>
+            <input type="number" id="player2_number" name="player2_number" placeholder="e.g., 44" value="{{ form_data.player2_number if form_data else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="player2_nationality">Player 2 Nationality</label>
+            <input type="text" id="player2_nationality" name="player2_nationality" placeholder="e.g., Finnish" value="{{ form_data.player2_nationality if form_data else '' }}" required>
+        </div>
+
+        <button type="submit" class="button">Create or Update Career</button>
+    </form>
+
+    <!-- Section for Resetting Career Data -->
+    <div class="reset-section">
+        <hr>
+        <h2>Reset Career</h2>
+        <p>This will delete all custom drivers and teams from the database, restoring the original 20-driver grid. This action cannot be undone.</p>
+        <form action="{{ url_for('reset_career') }}" method="POST">
+            <button type="submit" class="button button-danger">Reset Career Data</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
+
