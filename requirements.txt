@@ -1,13 +1,13 @@
 #--- Core Web Framework ---
-This is the main library that runs the web application.
+#This is the main library that runs the web application.
 Flask
 
 #--- Database Connector ---
-Allows the Flask application to communicate with our MySQL database.
+#Allows the Flask application to communicate with our MySQL database.
 mysql-connector-python
 
 #--- Production Web Server ---
-A professional-grade WSGI server used to run the Flask app on a live deployment server.
+#A professional-grade WSGI server used to run the Flask app on a live deployment server.
 gunicorn
 
 
