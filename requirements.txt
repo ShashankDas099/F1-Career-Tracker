@@ -1,28 +1,11 @@
---- Core Web Framework ---
-Flask
+#--- Core Web Framework ---
+#This is the main library that runs the web application.
+#Flask
 
---- Database Connector ---
-Allows the Flask application to communicate with a MySQL database.
-mysql-connector-python
+#--- Database Connector ---
+#Allows the Flask application to communicate with our MySQL database.
+#mysql-connector-python
 
---- Production Web Server ---
-A professional-grade WSGI server used to run the Flask app in production.
-gunicorn
-
-
-**Action 2: Push the Fix to GitHub**
-Now that you have the corrected file on your local machine, we need to upload it to your GitHub repository so that Render can see the fix.
-
-1.  Open your terminal in your `F1_Career_Project` folder.
-2.  Run the following commands one by one:
-    * **Add the changed file:**
-      ```bash
-      git add requirements.txt
-      ```
-    * **Commit the fix with a message:**
-      ```bash
-      git commit -m "Fix requirements.txt for deployment"
-      ```
-    * **Push the change to GitHub:**
-      ```bash
-      git push
+#--- Production Web Server ---
+#A professional-grade WSGI server used to run the Flask app on a live deployment server.
+#gunicorn
